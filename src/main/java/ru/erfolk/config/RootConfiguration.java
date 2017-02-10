@@ -1,8 +1,10 @@
 package ru.erfolk.config;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.*;
-import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,8 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
         @ComponentScan.Filter(value = {Controller.class, ControllerAdvice.class, RestController.class}, type = FilterType.ANNOTATION),
         @ComponentScan.Filter(pattern = {"ru\\.erfolk\\.web\\..*"}, type = FilterType.REGEX)
 })
-@EnableAspectJAutoProxy
-@EnableAsync
 @Slf4j
 public class RootConfiguration {
 }

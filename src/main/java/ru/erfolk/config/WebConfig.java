@@ -11,12 +11,16 @@ import org.springframework.core.Ordered;
 import org.springframework.core.env.Environment;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.web.servlet.config.annotation.*;
+import org.thymeleaf.spring4.SpringTemplateEngine;
+import org.thymeleaf.spring4.view.ThymeleafViewResolver;
+import org.thymeleaf.templateresolver.ITemplateResolver;
+import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 import javax.annotation.Resource;
 
 @EnableWebMvc
 @EnableSpringDataWebSupport
-@ComponentScan(basePackages = {"com.gotomedic.web", "com.gotomedic.bootstrap"})
+@ComponentScan(basePackages = "ru.erfolk.web")
 @Slf4j
 public class WebConfig extends WebMvcConfigurerAdapter {
 
@@ -52,13 +56,35 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return messageSource;
     }
 
+    @Bean(name = "templateResolver")
+    public ITemplateResolver getTemplateResolver() {
+        ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver();
+        templateResolver.setPrefix("/WEB-INF/templates/");
+        templateResolver.setSuffix(".html");
+        templateResolver.setTemplateMode("HTML5");
+        return templateResolver;
+    }
+
+    @Bean(name = "templateEngine")
+    public SpringTemplateEngine getTemplateEngine() {
+        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+        templateEngine.setTemplateResolver(getTemplateResolver());
+        return templateEngine;
+    }
+
+    @Bean(name = "viewResolver")
+    public ThymeleafViewResolver getViewResolver() {
+        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+        viewResolver.setTemplateEngine(getTemplateEngine());
+        viewResolver.setCharacterEncoding("UTF-8");
+        return viewResolver;
+    }
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-     registry.addViewController("/hotels/partialsList").setViewName("hotels/partialsList::content");
-     registry.addViewController("/hotels/partialsCreate").setViewName("hotels/partialsCreate::content");
-     registry.addViewController("/hotels/partialsEdit").setViewName("hotels/partialsEdit::content");
+        registry.addViewController("/test").setViewName("index");
     }
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/css/**").addResourceLocations("/css/").setCachePeriod(31556926);
