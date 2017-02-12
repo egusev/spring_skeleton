@@ -11,6 +11,9 @@ import ru.erfolk.entities.User;
 import ru.erfolk.repositories.UserRepository;
 import ru.erfolk.services.UserService;
 
+/**
+ * @author Eugene Gusev (egusev@gmail.com)
+ */
 @Service
 @Transactional(readOnly = true)
 @Slf4j

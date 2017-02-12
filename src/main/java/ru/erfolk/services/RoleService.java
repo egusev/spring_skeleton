@@ -1,7 +1,9 @@
 package ru.erfolk.services;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
-import ru.erfolk.entities.User;
+import ru.erfolk.entities.Role;
 
-public interface RoleService extends UserDetailsService, AbstractService<User, Integer> {
+/**
+ * @author Eugene Gusev (egusev@gmail.com)
+ */
+public interface RoleService extends AbstractService<Role, Integer> {
 }

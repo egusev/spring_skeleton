@@ -14,7 +14,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Created by eugene on 31/08/16.
+ * @author Eugene Gusev (egusev@gmail.com)
  */
 @Slf4j
 @NoArgsConstructor

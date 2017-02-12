@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Collection;
 
 /**
- * Created by eugene on 31/08/16.
+ * @author Eugene Gusev (egusev@gmail.com)
  */
 public interface AbstractService<T extends BaseEntity<K>, K extends Serializable> {
     Iterable<T> findAll();
