@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -22,6 +21,7 @@ import ru.erfolk.services.UserService;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
+
 
 @Configuration
 @EnableWebSecurity
@@ -65,23 +65,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-	protected void configure(HttpSecurity http) throws Exception {
-		if (env.getProperty(USE_SECURITY, Boolean.class, false)) {
-			http.csrf().disable()
+    protected void configure(HttpSecurity http) throws Exception {
+        if (env.getProperty(USE_SECURITY, Boolean.class, false)) {
+            http.csrf().disable()
 
 //					.addFilterBefore(getAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
 
 //					.exceptionHandling().authenticationEntryPoint(new RESTAuthenticationEntryPoint()).and()
 
-					// Configure the logout
+                    // Configure the logout
 //					.logout().permitAll().logoutSuccessHandler(new RESTLogoutSuccessHandler()).and()
 
-					// Configures url based authorization
-					.authorizeRequests()
-					// Anyone can access these urls
-					.anyRequest().permitAll();
-		}
-	}
+                    // Configures url based authorization
+                    .authorizeRequests()
+                    // Anyone can access these urls
+                    .anyRequest().permitAll();
+        }
+    }
 
     /**
      * Set authentication manager to process authentication requests.
