@@ -1,7 +1,8 @@
 package ru.erfolk.entities;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,11 +13,10 @@ import javax.persistence.UniqueConstraint;
  * @author Eugene Gusev (egusev@gmail.com)
  */
 @Entity
-@Table(name = "Rights", uniqueConstraints = {
-        @UniqueConstraint(name = "unique_url_method", columnNames = {"url", "method"})
-})
-@Data
-@EqualsAndHashCode(callSuper = true)
+@Table(name = "Permissions", uniqueConstraints = @UniqueConstraint(name = "unique_url_method", columnNames = {"url", "method"}))
+@Getter
+@Setter
+@ToString
 public class Right extends BaseEntity<Integer> {
     @Column
     private String url;
@@ -25,5 +25,5 @@ public class Right extends BaseEntity<Integer> {
     private String method;
 
     @Column
-    private int right;
+    private int permission;
 }

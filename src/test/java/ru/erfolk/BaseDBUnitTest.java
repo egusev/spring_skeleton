@@ -106,8 +106,7 @@ public class BaseDBUnitTest {
 
     public static class DefaultColumnFilter extends BaseColumnFilter {
         public DefaultColumnFilter() {
-            super(Arrays.asList("version", "creation_time", "modification_time",
-                    "activate_due_utc", "activation_code", "password"));
+            super(Arrays.asList("version", "creation_time", "modification_time"));
         }
     }
 

@@ -23,7 +23,7 @@ import java.util.Properties;
  */
 @Configuration
 @EnableTransactionManagement(proxyTargetClass = true)
-@EnableJpaRepositories("ru.erfolk.repositories")
+@EnableJpaRepositories(basePackages = "ru.erfolk")
 @PropertySource("classpath:application.properties")
 @Slf4j
 public class DataConfiguration {
@@ -91,7 +91,7 @@ public class DataConfiguration {
         jpaProperties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, HIBERNATE_SHOW_SQL);
 
         jpaProperties.put("hibernate.id.new_generator_mappings", false);
-        jpaProperties.put("hibernate.generate_statistics", HIBERNATE_GENERATE_STATISTICS );
+        jpaProperties.put("hibernate.generate_statistics", HIBERNATE_GENERATE_STATISTICS);
 
         jpaProperties.put("hibernate.jdbc.fetch_size", 400);
         jpaProperties.put("hibernate.jdbc.batch_size", 100);

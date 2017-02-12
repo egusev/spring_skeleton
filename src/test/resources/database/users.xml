@@ -1,13 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dataset>
+    <permissions id="1"
+            url="/"
+            method="get"
+            permission="1"
+
+            created_by="1"
+            creation_time="1970-01-01 00:00:00"
+            last_modified_by="1"
+            last_modification_time="1970-01-01 00:00:00"
+            version="0"
+    />
+
+    <roles id="1"
+           name="role1"
+           code="role1"
+
+           created_by="1"
+           creation_time="1970-01-01 00:00:00"
+           last_modified_by="1"
+           last_modification_time="1970-01-01 00:00:00"
+           version="0"
+    />
+
+    <role_rights role="1"
+                 permission="1"
+    />
+
     <users id="1"
            username="user"
            org=" "
            password="$2a$10$SJVXlBxtEMWG7cLzmhxUAeT9Pb7Oy0bb3Du9OF5lp8pyK5HHo.rXS"
            role="1"
 
+           created_by="1"
            creation_time="1970-01-01 00:00:00"
-           modification_time="1970-01-01 00:00:00"
+           last_modified_by="1"
+           last_modification_time="1970-01-01 00:00:00"
            version="0"
     />
 
@@ -17,8 +46,10 @@
            password="$2a$10$SJVXlBxtEMWG7cLzmhxUAeT9Pb7Oy0bb3Du9OF5lp8pyK5HHo.rXS"
            role="1"
 
+           created_by="1"
            creation_time="1970-01-01 00:00:00"
-           modification_time="1970-01-01 00:00:00"
+           last_modified_by="1"
+           last_modification_time="1970-01-01 00:00:00"
            version="0"
     />
 
@@ -28,16 +59,10 @@
            password="$2a$10$SJVXlBxtEMWG7cLzmhxUAeT9Pb7Oy0bb3Du9OF5lp8pyK5HHo.rXS"
            role="1"
 
+           created_by="1"
            creation_time="1970-01-01 00:00:00"
-           modification_time="1970-01-01 00:00:00"
+           last_modified_by="1"
+           last_modification_time="1970-01-01 00:00:00"
            version="0"
     />
-    <roles id="1"
-           name="role1"
-           code="role1"
-
-           creation_time="1970-01-01 00:00:00"
-           modification_time="1970-01-01 00:00:00"
-           version="0"
-           />
 </dataset>

@@ -38,4 +38,12 @@ public class UserServiceImpl extends AbstractServiceImpl<User, Integer>  impleme
 
         return new Actor(user);
     }
+
+    @Override
+    @Transactional
+    public User updateUser(int id) {
+        User user = userRepository.findOne(id);
+        user.setOrg("New organization");
+        return user;
+    }
 }

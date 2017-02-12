@@ -47,7 +47,7 @@ abstract class AbstractServiceImpl<T extends BaseEntity<K>, K extends Serializab
     }
 
     //    @Loggable
-    @Transactional(readOnly = false)
+    @Transactional
     @Override
     public K create(@NotNull T entity) {
         if (entity.getId() != null) {
@@ -57,7 +57,7 @@ abstract class AbstractServiceImpl<T extends BaseEntity<K>, K extends Serializab
     }
 
     //    @Loggable
-    @Transactional(readOnly = false)
+    @Transactional
     @Override
     public void update(@NotNull T entity) {
         if (entity.getId() == null) {
@@ -67,7 +67,7 @@ abstract class AbstractServiceImpl<T extends BaseEntity<K>, K extends Serializab
     }
 
     //    @Loggable
-    @Transactional(readOnly = false)
+    @Transactional
     @Override
     public boolean delete(@NotNull K id) {
         if (getRepository().exists(id)) {

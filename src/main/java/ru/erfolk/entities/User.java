@@ -1,7 +1,8 @@
 package ru.erfolk.entities;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -10,8 +11,9 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "Users", uniqueConstraints = @UniqueConstraint(name = "unique_user", columnNames = {"username", "org"}))
-@Data
-@EqualsAndHashCode(callSuper = true)
+@Getter
+@Setter
+@ToString(callSuper = true)
 public class User extends BaseEntity<Integer> {
 
     @Column
@@ -24,6 +26,6 @@ public class User extends BaseEntity<Integer> {
     private String password;
 
     @ManyToOne
-    @JoinColumn(name = "role", nullable = false)
+    @JoinColumn(name = "role", nullable = true)
     private Role role;
 }

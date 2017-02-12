@@ -1,11 +1,16 @@
 package ru.erfolk.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+import ru.erfolk.audit.CustomAuditListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+
+import static javax.persistence.FetchType.LAZY;
 
 /**
  * @author Eugene Gusev (egusev@gmail.com)
@@ -13,35 +18,37 @@ import java.util.Date;
 @MappedSuperclass
 @Getter
 @Setter
+@ToString(exclude = {"createdBy", "lastModifiedBy"})
+@EntityListeners({CustomAuditListener.class})
 public abstract class BaseEntity<K extends Serializable> {
-
-    @Column(name = "creation_time", nullable = false)
-    private Date creationTime;
-
-    @Column(name = "modification_time", nullable = false)
-    private Date modificationTime;
-
-    @Version
-    private long version;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected K id;
 
+    @Version
+    private long version;
+
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "created_by")
+    @JsonIgnore
+    private User createdBy;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "creation_time", nullable = false)
+    private Date creationTime;
+
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "last_modified_by")
+    @JsonIgnore
+    private User lastModifiedBy;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "last_modification_time", nullable = false)
+    private Date lastModificationTime;
+
     public K getId() {
         return id;
-    }
-
-    @PrePersist
-    public void prePersist() {
-        Date now = new Date();
-        this.creationTime = now;
-        this.modificationTime = now;
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        this.modificationTime = new Date();
     }
 
     @Override

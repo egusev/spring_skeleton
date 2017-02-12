@@ -1,8 +1,8 @@
 package ru.erfolk.entities;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,8 +15,9 @@ import java.util.List;
         @UniqueConstraint(name = "unique_code", columnNames = {"code"}),
         @UniqueConstraint(name = "unique_name", columnNames = {"name"})
 })
-@Data
-@EqualsAndHashCode(callSuper = true)
+@Getter
+@Setter
+@ToString(exclude = "rights")
 public class Role extends BaseEntity<Integer> {
     @Column(nullable = false)
     private String code;
@@ -28,7 +29,7 @@ public class Role extends BaseEntity<Integer> {
     @ManyToMany
     @JoinTable(name = "role_rights",
             joinColumns = @JoinColumn(name = "role", nullable = false, updatable = false),
-            inverseJoinColumns = @JoinColumn(name = "right", nullable = false, updatable = false)
+            inverseJoinColumns = @JoinColumn(name = "permission", nullable = false, updatable = false)
     )
     private List<Right> rights;
 }
