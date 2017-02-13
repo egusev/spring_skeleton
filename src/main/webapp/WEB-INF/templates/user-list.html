@@ -1,0 +1,29 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<body>
+<div class="container" layout:fragment="content">
+    <table class="table">
+        <tr>
+            <th class="col-md-offset-3 col-md-3">Username</th>
+            <th class="col-md-3">Organization</th>
+            <th class="col-md-1"><!-- --></th>
+        </tr>
+
+        <th:block th:each="user : ${list}">
+            <tr>
+                <td th:text="${user.username}">Username</td>
+                <td th:text="${user.org}">Organization</td>
+                <td><a href="/users/1" th:href="@{'/users/' + ${user.id}}" class="btn btn-success btn-xs custom-width">edit</a>
+                </td>
+            </tr>
+        </th:block>
+    </table>
+</div>
+</body>
+</html>
+
+

@@ -1,6 +1,7 @@
 package ru.erfolk.web.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -19,10 +20,15 @@ public class GeneralController {
             return "forward:/";
     }
 
+    @RequestMapping()
+    public String homepage(Model model, Principal principal) {
+        return principal != null ? "welcome" : "login";
+    }
+
     @RequestMapping("/user")
-   	@ResponseBody
-   	public Principal user(Principal user) {
-   		return user;
-   	}
+    @ResponseBody
+    public Principal user(Principal user) {
+        return user;
+    }
 
 }

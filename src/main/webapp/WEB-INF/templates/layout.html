@@ -1,16 +1,16 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org">
-<head th:replace="${page}::head">
+<head>
     <link href="css/style.css" rel="stylesheet"/>
     <link href="css/angular-bootstrap.css" rel="stylesheet"/>
+    <script src="js/angular-bootstrap.js" type="text/javascript"></script>
     <base href="/"/>
 </head>
 <body>
-<header th:include="menu::header">
-</header>
-<div th:include="${page}::content" class="container"></div>
-<script src="js/angular-bootstrap.js" type="text/javascript"></script>
+<header th:include="menu::header"/>
+<div layout:fragment="content"/>
 </body>
 </html>

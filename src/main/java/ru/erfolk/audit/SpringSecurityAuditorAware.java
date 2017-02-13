@@ -13,13 +13,13 @@ import ru.erfolk.entities.User;
 @Component
 public class SpringSecurityAuditorAware implements AuditorAware<User> {
 
-  public User getCurrentAuditor() {
-    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    public User getCurrentAuditor() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-    if (authentication == null || !authentication.isAuthenticated()) {
-      return null;
+        if (authentication == null || !(authentication.getPrincipal() instanceof Actor)) {
+            return null;
+        }
+
+        return ((Actor) authentication.getPrincipal()).getUser();
     }
-
-    return ((Actor) authentication.getPrincipal()).getUser();
-  }
 }

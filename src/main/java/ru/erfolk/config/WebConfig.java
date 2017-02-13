@@ -1,6 +1,7 @@
 package ru.erfolk.config;
 
 import lombok.extern.slf4j.Slf4j;
+import nz.net.ultraq.thymeleaf.LayoutDialect;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -69,6 +70,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public SpringTemplateEngine getTemplateEngine() {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(getTemplateResolver());
+        templateEngine.addDialect(new LayoutDialect());
         return templateEngine;
     }
 
