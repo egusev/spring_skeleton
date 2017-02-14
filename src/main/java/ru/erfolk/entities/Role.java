@@ -7,6 +7,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -21,9 +22,11 @@ import java.util.List;
 @Setter
 @ToString(exclude = "rights")
 public class Role extends BaseEntity<Integer> {
+    @NotNull
     @Column(nullable = false)
     private String code;
 
+    @NotNull
     @Setter
     @Column(nullable = false)
     private String name;
@@ -34,5 +37,5 @@ public class Role extends BaseEntity<Integer> {
             inverseJoinColumns = @JoinColumn(name = "permission", nullable = false, updatable = false)
     )
     @Fetch(FetchMode.SUBSELECT)
-    private List<Right> rights;
+    private List<Permission> rights;
 }

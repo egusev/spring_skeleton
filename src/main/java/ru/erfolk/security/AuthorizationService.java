@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ru.erfolk.actors.Actor;
-import ru.erfolk.entities.Right;
+import ru.erfolk.entities.Permission;
 import ru.erfolk.entities.Role;
 import ru.erfolk.services.RoleService;
 
@@ -37,12 +37,12 @@ public class AuthorizationService {
 
         Role role = roleService.findById(actor.getUser().getId());
 
-        for (Right right : role.getRights()) {
-            if (request.getMethod().equalsIgnoreCase(right.getMethod())
-                    && request.getServletPath().matches(right.getPath())) {
-                if (right.getPermission() > 0) {
+        for (Permission permission : role.getRights()) {
+            if (request.getMethod().equalsIgnoreCase(permission.getMethod())
+                    && request.getServletPath().matches(permission.getPath())) {
+                if (permission.getPermission() > 0) {
                     return true;
-                } else if (right.getPermission() < 0) {
+                } else if (permission.getPermission() < 0) {
                     return false;
                 }
             }

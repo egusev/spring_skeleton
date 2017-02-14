@@ -2,11 +2,11 @@ package ru.erfolk.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import ru.erfolk.entities.Right;
+import ru.erfolk.entities.Permission;
 
 /**
  * @author Eugene Gusev (egusev@gmail.com)
  */
 @Repository
-public interface RightRepository extends CrudRepository<Right, Integer> {
+public interface PermissionRepository extends CrudRepository<Permission, Integer> {
 }

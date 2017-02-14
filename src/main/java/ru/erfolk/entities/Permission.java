@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author Eugene Gusev (egusev@gmail.com)
@@ -17,10 +18,12 @@ import javax.persistence.UniqueConstraint;
 @Getter
 @Setter
 @ToString
-public class Right extends BaseEntity<Integer> {
+public class Permission extends BaseEntity<Integer> {
+    @NotNull
     @Column
     private String path;
 
+    @NotNull
     @Column
     private String method;
 

@@ -5,9 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.erfolk.entities.Right;
-import ru.erfolk.repositories.RightRepository;
-import ru.erfolk.services.RightService;
+import ru.erfolk.entities.Permission;
+import ru.erfolk.repositories.PermissionRepository;
+import ru.erfolk.services.PermissionService;
 
 /**
  * @author Eugene Gusev (egusev@gmail.com)
@@ -15,13 +15,13 @@ import ru.erfolk.services.RightService;
 @Service
 @Transactional(readOnly = true)
 @Slf4j
-public class RightServiceImpl extends AbstractServiceImpl<Right, Integer>  implements RightService {
+public class PermissionServiceImpl extends AbstractServiceImpl<Permission, Integer>  implements PermissionService {
 
     @Autowired
-    private RightRepository rightRepository;
+    private PermissionRepository rightRepository;
 
     @Override
-    protected CrudRepository<Right, Integer> getRepository() {
+    protected CrudRepository<Permission, Integer> getRepository() {
         return rightRepository;
     }
 }

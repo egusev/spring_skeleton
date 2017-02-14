@@ -15,13 +15,13 @@
             <th class="col-md-1"><!-- --></th>
         </tr>
 
-        <th:block th:each="right : ${list}">
+        <th:block th:each="permission : ${list}">
             <tr>
-                <td th:text="${right.id}">ID</td>
-                <td th:text="${right.path}">Path</td>
-                <td th:text="${right.method}">Method</td>
-                <td th:text="${right.permission}">Permission</td>
-                <td><a href="/roles/1" th:href="@{'/roles/' + ${right.id}}" class="btn btn-success btn-xs custom-width">edit</a></td>
+                <td th:text="${permission.id}">ID</td>
+                <td th:text="${permission.path}">Path</td>
+                <td th:text="${permission.method}">Method</td>
+                <td th:text="${permission.permission}">Permission</td>
+                <td><a href="/rights/1" th:href="@{'/rights/' + ${permission.id}}" class="btn btn-success btn-xs custom-width">edit</a></td>
             </tr>
         </th:block>
     </table>
