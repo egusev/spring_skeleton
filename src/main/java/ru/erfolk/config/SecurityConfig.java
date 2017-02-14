@@ -69,6 +69,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         if (env.getProperty(USE_SECURITY, Boolean.class, false)) {
             http.csrf().disable()
 
+                    // Configure login form
+                    .formLogin()
+                    .loginPage("/")
+                    .loginProcessingUrl("/login")
+                    .usernameParameter("username")
+                    .passwordParameter("password")
+                    .failureUrl("/?error=bad_credentials")
+                    .defaultSuccessUrl("/", true)
+                    .and()
+                            // Configure the logout
+                    .logout()
+                    .deleteCookies("JSESSIONID")
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/")
+                    .and()
+
 //					.addFilterBefore(getAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
 
 //					.exceptionHandling().authenticationEntryPoint(new RESTAuthenticationEntryPoint()).and()
