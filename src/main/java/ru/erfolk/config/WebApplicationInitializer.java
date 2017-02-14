@@ -10,6 +10,9 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 import javax.servlet.Filter;
 
+/**
+ * @author Eugene Gusev (egusev@gmail.com)
+ */
 @Slf4j
 public class WebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 

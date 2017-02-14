@@ -8,6 +8,9 @@ import ru.erfolk.entities.User;
 import java.util.Collection;
 import java.util.Collections;
 
+/**
+ * @author Eugene Gusev (egusev@gmail.com)
+ */
 public class Actor implements UserDetails {
     @Getter
     private User user;

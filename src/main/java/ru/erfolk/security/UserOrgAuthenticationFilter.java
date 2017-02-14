@@ -8,7 +8,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by eugene on 14.02.17.
+ * @author Eugene Gusev (egusev@gmail.com)
  */
 @Slf4j
 public class UserOrgAuthenticationFilter extends UsernamePasswordAuthenticationFilter {

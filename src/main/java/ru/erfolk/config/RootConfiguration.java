@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * @author Eugene Gusev (egusev@gmail.com)
+ */
 @Configuration
 @PropertySource("classpath:application.properties")
 @ComponentScan(basePackages = {"ru.erfolk"}, excludeFilters = {

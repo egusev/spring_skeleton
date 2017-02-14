@@ -3,7 +3,9 @@ package ru.erfolk.actors;
 import org.springframework.security.core.GrantedAuthority;
 import ru.erfolk.entities.User;
 
-
+/**
+ * @author Eugene Gusev (egusev@gmail.com)
+ */
 public class UserAuthority implements GrantedAuthority {
     private User user;
 

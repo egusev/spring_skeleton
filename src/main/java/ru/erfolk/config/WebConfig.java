@@ -19,6 +19,9 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 import javax.annotation.Resource;
 
+/**
+ * @author Eugene Gusev (egusev@gmail.com)
+ */
 @EnableWebMvc
 @EnableSpringDataWebSupport
 @ComponentScan(basePackages = "ru.erfolk.web")

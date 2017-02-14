@@ -3,6 +3,9 @@ package ru.erfolk.actors;
 import org.springframework.security.core.GrantedAuthority;
 import ru.erfolk.entities.Role;
 
+/**
+ * @author Eugene Gusev (egusev@gmail.com)
+ */
 public class RoleAuthority implements GrantedAuthority {
     private String authority;
 

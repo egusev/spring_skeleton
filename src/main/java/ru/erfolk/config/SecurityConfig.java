@@ -28,6 +28,9 @@ import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 
+/**
+ * @author Eugene Gusev (egusev@gmail.com)
+ */
 @Configuration
 @EnableWebSecurity
 @Slf4j

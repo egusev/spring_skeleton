@@ -6,8 +6,10 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 /**
- * Helper class which is able to autowire a specified class. It holds a static reference to the {@link org
- * .springframework.context.ApplicationContext}.
+ * Helper class which is able to autowire a specified class. It holds a static reference to the
+ * {@link org.springframework.context.ApplicationContext}.
+ *
+ * @author Eugene Gusev (egusev@gmail.com)
  */
 @Component
 public class AutowireHelper implements ApplicationContextAware {
@@ -35,7 +37,6 @@ public class AutowireHelper implements ApplicationContextAware {
             }
         }
     }
-
 
     public static AutowireHelper getInstance() {
         return INSTANCE;
