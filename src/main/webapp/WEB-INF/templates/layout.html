@@ -10,7 +10,7 @@
     <base href="/"/>
 </head>
 <body>
-<header th:include="menu::header"/>
-<div layout:fragment="content"/>
+<th:block th:replace="menu::header"/>
+<div layout:fragment="content"></div>
 </body>
 </html>

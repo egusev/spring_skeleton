@@ -9,23 +9,22 @@
     <table class="table">
         <tr>
             <th class="col-md-offset-2 col-md-1">ID</th>
-            <th class="col-md-3">Username</th>
-            <th class="col-md-3">Organization</th>
+            <th class="col-md-3">Path</th>
+            <th class="col-md-2">Method</th>
+            <th class="col-md-1">Permission</th>
             <th class="col-md-1"><!-- --></th>
         </tr>
 
-        <th:block th:each="user : ${list}">
+        <th:block th:each="right : ${list}">
             <tr>
-                <td th:text="${user.id}">ID</td>
-                <td th:text="${user.username}">Username</td>
-                <td th:text="${user.org}">Organization</td>
-                <td><a href="/users/1" th:href="@{'/users/' + ${user.id}}" class="btn btn-success btn-xs custom-width">edit</a>
-                </td>
+                <td th:text="${right.id}">ID</td>
+                <td th:text="${right.path}">Path</td>
+                <td th:text="${right.method}">Method</td>
+                <td th:text="${right.permission}">Permission</td>
+                <td><a href="/roles/1" th:href="@{'/roles/' + ${right.id}}" class="btn btn-success btn-xs custom-width">edit</a></td>
             </tr>
         </th:block>
     </table>
 </div>
 </body>
 </html>
-
-

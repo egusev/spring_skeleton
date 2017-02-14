@@ -8,15 +8,17 @@
 <div class="container" layout:fragment="content">
     <table class="table">
         <tr>
-            <th class="col-md-offset-3 col-md-3">Name</th>
+            <th class="col-md-offset-2 col-md-1">ID</th>
+            <th class="col-md-3">Name</th>
             <th class="col-md-3">Code</th>
             <th class="col-md-1"><!-- --></th>
         </tr>
 
         <th:block th:each="role : ${list}">
             <tr>
-                <td th:text="${role.name}">Username</td>
-                <td th:text="${role.code}">Organization</td>
+                <td th:text="${role.id}">ID</td>
+                <td th:text="${role.name}">Name</td>
+                <td th:text="${role.code}">Code</td>
                 <td><a href="/roles/1" th:href="@{'/roles/' + ${role.id}}" class="btn btn-success btn-xs custom-width">edit</a></td>
             </tr>
         </th:block>

@@ -1,7 +1,6 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout">
 <head>
@@ -22,6 +21,13 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user"><!-- --></i></span>
                             <input type="text" class="form-control" name="username" placeholder="username"/>
+                        </div>
+
+                        <span class="help-block"></span>
+
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user"><!-- --></i></span>
+                            <input type="text" class="form-control" name="org" placeholder="organization"/>
                         </div>
 
                         <span class="help-block"></span>
