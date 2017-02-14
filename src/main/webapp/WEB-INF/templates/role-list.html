@@ -20,7 +20,7 @@
                 <td th:text="${role.id}">ID</td>
                 <td th:text="${role.name}">Name</td>
                 <td th:text="${role.code}">Code</td>
-                <td><a sec:authorize-url="/roles/${role.id}" href="/roles/1" th:href="@{'/roles/' + ${role.id}}" class="btn btn-success btn-xs custom-width">edit</a></td>
+                <td><a href="/roles/1" th:href="@{'/roles/' + ${role.id}}" class="btn btn-success btn-xs custom-width">edit</a></td>
             </tr>
         </th:block>
     </table>
