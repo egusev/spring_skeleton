@@ -7,25 +7,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.erfolk.services.RoleService;
 
-import java.security.Principal;
-
 /**
  * @author Eugene Gusev (egusev@gmail.com)
  */
 @Controller
 @Slf4j
+@RequestMapping(Endpoints.ROLE_LIST)
 public class RoleController {
 
     @Autowired
     private RoleService roleService;
 
-    @RequestMapping("/login")
-    public String login(Model model, Principal principal) {
-        log.warn("{}", principal);
-        return principal != null ? "welcome" : "login";
-    }
-
-    @RequestMapping("/roles")
+    @RequestMapping
     public String listGroups(Model model) {
         model.addAttribute("list", roleService.findAll());
         return "role-list";

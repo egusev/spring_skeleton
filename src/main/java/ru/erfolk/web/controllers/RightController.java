@@ -12,12 +12,13 @@ import ru.erfolk.services.RightService;
  */
 @Controller
 @Slf4j
+@RequestMapping(Endpoints.RIGHT_LIST)
 public class RightController {
 
     @Autowired
     private RightService rightService;
 
-    @RequestMapping("/rights")
+    @RequestMapping
     public String listRights(Model model) {
         model.addAttribute("list", rightService.findAll());
         return "right-list";

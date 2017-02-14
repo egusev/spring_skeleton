@@ -1,8 +1,8 @@
 package ru.erfolk.web.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.security.Principal;
@@ -21,7 +21,7 @@ public class GeneralController {
     }
 
     @RequestMapping()
-    public String homepage(Model model, Principal principal) {
+    public String homepage(Principal principal) {
         return principal != null ? "welcome" : "login";
     }
 
@@ -31,4 +31,8 @@ public class GeneralController {
         return user;
     }
 
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login() {
+        return "forward:/";
+    }
 }
