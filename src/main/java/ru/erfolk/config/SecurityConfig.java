@@ -15,9 +15,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import ru.erfolk.security.UserOrgAuthenticationFilter;
 import ru.erfolk.services.UserService;
+import ru.erfolk.web.controllers.Endpoints;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -68,24 +73,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         if (env.getProperty(USE_SECURITY, Boolean.class, false)) {
             http.csrf().disable()
-
-                    // Configure login form
-                    .formLogin()
-                    .loginPage("/")
-                    .loginProcessingUrl("/login")
-                    .usernameParameter("username")
-                    .passwordParameter("password")
-                    .failureUrl("/?error=bad_credentials")
-                    .defaultSuccessUrl("/", true)
-                    .and()
-                            // Configure the logout
+                    // Configure the login entry point
+                    .addFilterBefore(getAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                    // Configure the logout
                     .logout()
                     .deleteCookies("JSESSIONID")
                     .logoutUrl("/logout")
                     .logoutSuccessUrl("/")
                     .and()
-
-//					.addFilterBefore(getAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
 
 //					.exceptionHandling().authenticationEntryPoint(new RESTAuthenticationEntryPoint()).and()
 
@@ -130,15 +125,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return tokenRepository;
     }
 
-/*
     @Bean
     public UsernamePasswordAuthenticationFilter getAuthenticationFilter() throws Exception {
-        JsonAuthenticationFilter filter = new JsonAuthenticationFilter();
+        SavedRequestAwareAuthenticationSuccessHandler successHandler = new SavedRequestAwareAuthenticationSuccessHandler();
+        successHandler.setDefaultTargetUrl("/");
+        successHandler.setAlwaysUseDefaultTargetUrl(true);
+
+        SimpleUrlAuthenticationFailureHandler failureHandler = new SimpleUrlAuthenticationFailureHandler("/?error=bad_credentials");
+
+        UserOrgAuthenticationFilter filter = new UserOrgAuthenticationFilter();
         filter.setFilterProcessesUrl(Endpoints.LOGIN);
         filter.setAuthenticationManager(authenticationManager());
-        filter.setAuthenticationSuccessHandler(new RESTAuthenticationSuccessHandler());
-        filter.setAuthenticationFailureHandler(new RESTAuthenticationFailureHandler());
+        filter.setUsernameParameter("username");
+        filter.setOrgParameter("org");
+        filter.setPasswordParameter("password");
+        filter.setAuthenticationSuccessHandler(successHandler);
+        filter.setAuthenticationFailureHandler(failureHandler);
         return filter;
     }
-*/
 }

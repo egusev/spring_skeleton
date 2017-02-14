@@ -13,7 +13,7 @@ public interface UserRepository extends CrudRepository<User, Integer> {
     @Override
     User findOne(Integer integer);
 
-    User findByUsername(String username);
+    User findByUsernameAndOrg(String username, String org);
 
     @Override
     <S extends User> S save(S entity);

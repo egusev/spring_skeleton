@@ -4,6 +4,7 @@ package ru.erfolk.web.controllers;
  * @author Eugene Gusev (egusev@gmail.com)
  */
 public interface Endpoints {
+    String LOGIN            = "/login";
 
     String ENDPOINTS        = "/json/endpoints";
 
