@@ -3,6 +3,7 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
       layout:decorator="layout">
 <body>
 <div class="container" layout:fragment="content">
@@ -19,7 +20,7 @@
                 <td th:text="${user.id}">ID</td>
                 <td th:text="${user.username}">Username</td>
                 <td th:text="${user.org}">Organization</td>
-                <td><a href="/users/1" th:href="@{'/users/' + ${user.id}}" class="btn btn-success btn-xs custom-width">edit</a>
+                <td><a sec:authorize-url="/users/${user.id}" href="/users/1" th:href="@{'/users/' + ${user.id}}" class="btn btn-success btn-xs custom-width">edit</a>
                 </td>
             </tr>
         </th:block>

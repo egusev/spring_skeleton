@@ -35,7 +35,7 @@ public class AuthorizationService {
             return false;
         }
 
-        Role role = roleService.findById(actor.getUser().getId());
+        Role role = roleService.findById(actor.getUser().getRole().getId());
 
         for (Permission permission : role.getRights()) {
             if (request.getMethod().equalsIgnoreCase(permission.getMethod())

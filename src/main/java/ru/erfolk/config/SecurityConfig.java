@@ -94,6 +94,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .authorizeRequests()
                     // Anyone can access to the home page
                     .antMatchers("/").permitAll()
+                    .antMatchers("/logout").authenticated()
                     // Others page authorised by service
                     .antMatchers("**").access("@authorizationService.check(authentication,request)");
         }

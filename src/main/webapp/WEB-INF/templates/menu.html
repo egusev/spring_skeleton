@@ -1,7 +1,9 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
 <th:block th:fragment="header">
     <header class="navbar navbar-fixed-top bs-docs-nav navbar-inverse" id="navbar-top"
             role="banner">
@@ -10,24 +12,10 @@
                 <ul class="nav navbar-nav" id="preset-bar">
 
                     <li class="active"><a href="/login">Login</a></li>
-                    <li class="active"><a href="/users">Users</a></li>
-                    <li class="active"><a href="/roles">Groups</a></li>
-                    <li class="active"><a href="/rights">Rights</a></li>
-                </ul>
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">test
-                            <span class="caret"><!-- Caret --></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Login</a></li>
-                            <li><a href="#">Logout</a></li>
-                            <li class="divider"><!-- divider --></li>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">menu</a></li>
-                        </ul>
-                    </li>
+                    <li sec:authorize-url="/users" class="active"><a href="/users">Users</a></li>
+                    <li sec:authorize-url="/roles" class="active"><a href="/roles">Groups</a></li>
+                    <li sec:authorize-url="/rights" class="active"><a href="/rights">Rights</a></li>
+                    <li sec:authorize-url="/logout" class="active"><a href="/logout">Logout</a></li>
                 </ul>
             </nav>
         </div>
