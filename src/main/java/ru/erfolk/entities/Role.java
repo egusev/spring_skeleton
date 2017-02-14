@@ -3,6 +3,8 @@ package ru.erfolk.entities;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.List;
@@ -31,5 +33,6 @@ public class Role extends BaseEntity<Integer> {
             joinColumns = @JoinColumn(name = "role", nullable = false, updatable = false),
             inverseJoinColumns = @JoinColumn(name = "permission", nullable = false, updatable = false)
     )
+    @Fetch(FetchMode.SUBSELECT)
     private List<Right> rights;
 }

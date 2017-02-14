@@ -92,8 +92,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                     // Configures url based authorization
                     .authorizeRequests()
-                    // Anyone can access these urls
-                    .anyRequest().permitAll();
+                    // Anyone can access to the home page
+                    .antMatchers("/").permitAll()
+                    // Others page authorised by service
+                    .antMatchers("**").access("@authorizationService.check(authentication,request)");
         }
     }
 
