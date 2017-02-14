@@ -30,7 +30,7 @@
     <users id="1"
            username="user"
            org=" "
-           password="$2a$10$SJVXlBxtEMWG7cLzmhxUAeT9Pb7Oy0bb3Du9OF5lp8pyK5HHo.rXS"
+           password="$2a$10$HtdParkw.uxVMYB1x5x6ieahFN2TuoYYgWA7s.n7MAxwI56qAjCD6"
            role="1"
 
            created_by="1"
@@ -43,7 +43,7 @@
     <users id="2"
            username="user"
            org="org1"
-           password="$2a$10$SJVXlBxtEMWG7cLzmhxUAeT9Pb7Oy0bb3Du9OF5lp8pyK5HHo.rXS"
+           password="$2a$10$HtdParkw.uxVMYB1x5x6ieahFN2TuoYYgWA7s.n7MAxwI56qAjCD6"
            role="1"
 
            created_by="1"
@@ -56,7 +56,7 @@
     <users id="3"
            username="user"
            org="org2"
-           password="$2a$10$SJVXlBxtEMWG7cLzmhxUAeT9Pb7Oy0bb3Du9OF5lp8pyK5HHo.rXS"
+           password="$2a$10$HtdParkw.uxVMYB1x5x6ieahFN2TuoYYgWA7s.n7MAxwI56qAjCD6"
            role="1"
 
            created_by="1"
