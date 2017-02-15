@@ -61,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         log.info("Use security {}", env.getProperty(USE_SECURITY, Boolean.class, false));
         if (env.getProperty(USE_SECURITY, Boolean.class, false)) {
-            web.ignoring().antMatchers("/js/**", "/images/**", "/css/**", "/fonts/**");
+            web.ignoring().antMatchers("/js/**", "/images/**", "/css/**", "/fonts/**", "/favicon.ico");
         } else {
             web.ignoring().antMatchers("/**");
         }
