@@ -7,6 +7,13 @@
       layout:decorator="layout">
 <body>
 <div class="container" layout:fragment="content">
+    <div class="row">
+        <div class="col-md-12">
+            <a th:href="@{'/rights/-1'}" class="btn btn-success" th:text="#{messages.permission.create}">Create</a>
+        </div>
+    </div>
+    <br/>
+
     <table class="table">
         <tr>
             <th class="col-md-offset-2 col-md-1">ID</th>

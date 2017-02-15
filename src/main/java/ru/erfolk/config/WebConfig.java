@@ -2,8 +2,8 @@ package ru.erfolk.config;
 
 import lombok.extern.slf4j.Slf4j;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
@@ -11,11 +11,13 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.core.Ordered;
 import org.springframework.core.env.Environment;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
-import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
-import org.thymeleaf.templateresolver.ITemplateResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 import javax.annotation.Resource;
@@ -48,21 +50,19 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public MessageSource messageSource() {
+    public ResourceBundleMessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-
         messageSource.setBasename(environment.getRequiredProperty(MESSAGESOURCE_BASENAME));
         messageSource.setUseCodeAsDefaultMessage(
                 Boolean.parseBoolean(
                         environment.getRequiredProperty(MESSAGESOURCE_USE_CODE_AS_DEFAULT_MESSAGE)
                 )
         );
-
         return messageSource;
     }
 
-    @Bean(name = "templateResolver")
-    public ITemplateResolver getTemplateResolver() {
+    @Bean
+    public ServletContextTemplateResolver templateResolver() {
         ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver();
         templateResolver.setPrefix("/WEB-INF/templates/");
         templateResolver.setSuffix(".html");
@@ -70,27 +70,29 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return templateResolver;
     }
 
-    @Bean(name = "templateEngine")
-    public SpringTemplateEngine getTemplateEngine() {
+    @Bean
+    public SpringTemplateEngine templateEngine(@Autowired ServletContextTemplateResolver templateResolver) {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setTemplateResolver(getTemplateResolver());
+        templateEngine.setTemplateResolver(templateResolver);
         templateEngine.addDialect(new LayoutDialect());
         templateEngine.addDialect(new SpringSecurityDialect());
         return templateEngine;
     }
 
-    @Bean(name = "viewResolver")
-    public ThymeleafViewResolver getViewResolver() {
+    @Bean
+    public ThymeleafViewResolver viewResolver(@Autowired SpringTemplateEngine templateEngine) {
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
-        viewResolver.setTemplateEngine(getTemplateEngine());
+        viewResolver.setTemplateEngine(templateEngine);
         viewResolver.setCharacterEncoding("UTF-8");
         return viewResolver;
     }
 
+/*
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/test").setViewName("index");
     }
+*/
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -106,25 +108,4 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         configurer.enable();
     }
 
-/*
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LogHandlerInterceptorAdapter());
-    }
-
-    @Bean
-    public CommonsRequestLoggingFilter requestLoggingFilter() {
-        CommonsRequestLoggingFilter crlf = new CommonsRequestLoggingFilter();
-        crlf.setIncludeClientInfo(true);
-        crlf.setIncludeQueryString(true);
-        crlf.setIncludePayload(true);
-        return crlf;
-    }
-
-    @Bean
-    public CustomizableTraceInterceptor customizableTraceInterceptor() {
-        CustomizableTraceInterceptor cti = new CustomizableTraceInterceptor();
-        return cti;
-    }
-*/
 }
