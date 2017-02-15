@@ -8,31 +8,27 @@
 <div class="container" layout:fragment="content">
     <div class="row">
         <div class="col-mdoffset-2 col-md-8">
-            <form th:object="${user}" method="post">
+            <form th:object="${role}" method="post">
                 <table class="table table-hover">
                     <tr>
                         <th>ID</th>
                         <td><input type="text" th:field="*{id}" readonly="readonly" value="ID"/></td>
                     </tr>
                     <tr>
-                        <th>Username</th>
-                        <td><input type="text" th:field="*{username}" value="username"/></td>
+                        <th>Name</th>
+                        <td><input type="text" th:field="*{name}" value="name"/></td>
                     </tr>
                     <tr>
-                        <th>Organization</th>
-                        <td><input type="text" th:field="*{org}" value="organization"/></td>
+                        <th>Code</th>
+                        <td><input type="text" th:field="*{code}" value="code"/></td>
                     </tr>
                     <tr>
-                        <th>Password</th>
-                        <td><input type="password" th:field="*{password}" value="password"/></td>
-                    </tr>
-                    <tr>
-                        <th>Role</th>
+                        <th>Permissions</th>
                         <td>
-                            <select th:field="*{role}">
-                                <option th:each="role : ${roles}"
-                                        th:value="${role.id}"
-                                        th:text="${role.name}">Role select
+                            <select th:field="*{rights}" size="10" multiple="multiple">
+                                <option th:each="permission : ${permissions}"
+                                        th:value="${permission.id}"
+                                        th:text="${permission.path}">Permission select
                                 </option>
                             </select>
                         </td>

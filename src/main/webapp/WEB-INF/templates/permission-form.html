@@ -8,34 +8,23 @@
 <div class="container" layout:fragment="content">
     <div class="row">
         <div class="col-mdoffset-2 col-md-8">
-            <form th:object="${user}" method="post">
+            <form th:object="${permission}" method="post">
                 <table class="table table-hover">
                     <tr>
                         <th>ID</th>
                         <td><input type="text" th:field="*{id}" readonly="readonly" value="ID"/></td>
                     </tr>
                     <tr>
-                        <th>Username</th>
-                        <td><input type="text" th:field="*{username}" value="username"/></td>
+                        <th>Path</th>
+                        <td><input type="text" th:field="*{path}" value="path"/></td>
                     </tr>
                     <tr>
-                        <th>Organization</th>
-                        <td><input type="text" th:field="*{org}" value="organization"/></td>
+                        <th>Method</th>
+                        <td><input type="text" th:field="*{method}" value="method"/></td>
                     </tr>
                     <tr>
-                        <th>Password</th>
-                        <td><input type="password" th:field="*{password}" value="password"/></td>
-                    </tr>
-                    <tr>
-                        <th>Role</th>
-                        <td>
-                            <select th:field="*{role}">
-                                <option th:each="role : ${roles}"
-                                        th:value="${role.id}"
-                                        th:text="${role.name}">Role select
-                                </option>
-                            </select>
-                        </td>
+                        <th>Permission</th>
+                        <td><input type="text" th:field="*{permission}" value="permission"/></td>
                     </tr>
                     <tr>
                         <td colspan="2"><input class="button" type="submit" value="Save"/></td>

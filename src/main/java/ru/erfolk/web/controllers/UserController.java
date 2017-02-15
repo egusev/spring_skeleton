@@ -3,6 +3,7 @@ package ru.erfolk.web.controllers;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,9 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.erfolk.entities.User;
+import ru.erfolk.services.RoleService;
 import ru.erfolk.services.UserService;
 
 import javax.validation.Valid;
+import java.util.Locale;
 
 /**
  * @author Eugene Gusev (egusev@gmail.com)
@@ -28,7 +31,13 @@ public class UserController {
     private UserService userService;
 
     @Autowired
+    private RoleService roleService;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private MessageSource messageSource;
 
     @RequestMapping
     public String listUsers(Model model) {
@@ -38,11 +47,12 @@ public class UserController {
 
     @RequestMapping("{id}")
     public String form(@PathVariable("id") @NonNull Integer id, Model model) {
-        User user = userService.findById(id);
+        User user = id > 0 ? userService.findById(id) : new User();
         if (user == null) {
-            return "redirect:/" + Endpoints.USER_LIST;
+            return "redirect:" + Endpoints.USER_LIST;
         }
         model.addAttribute("user", user);
+        model.addAttribute("roles", roleService.findAll());
         return "user-form";
     }
 
@@ -57,15 +67,23 @@ public class UserController {
             return "redirect:" + Endpoints.USER_LIST + "/" + id;
         }
         log.warn("user {}", user);
-        User entity = userService.findById(id);
+        log.warn("message {}", messageSource.getMessage("user.button", null, Locale.getDefault()));
+
+        User entity = id > 0 ? userService.findById(id) : new User();
         if (entity != null) {
             entity.setUsername(user.getUsername());
             entity.setOrg(user.getOrg());
+            entity.setRole(user.getRole());
 
             if (user.getPassword() != null && !user.getPassword().trim().isEmpty()) {
-                user.setPassword(passwordEncoder.encode(user.getPassword()));
+                entity.setPassword(passwordEncoder.encode(user.getPassword()));
             }
-            userService.update(entity);
+
+            if (entity.getId() == null) {
+                userService.create(entity);
+            } else {
+                userService.update(entity);
+            }
         }
 
         return "redirect:" + Endpoints.USER_LIST;
