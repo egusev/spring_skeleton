@@ -38,7 +38,7 @@ public class AuthorizationService {
         Role role = roleService.findById(actor.getUser().getRole().getId());
 
         for (Permission permission : role.getRights()) {
-            if (request.getMethod().equalsIgnoreCase(permission.getMethod())
+            if (request.getMethod().matches(permission.getMethod())
                     && request.getServletPath().matches(permission.getPath())) {
                 if (permission.getPermission() > 0) {
                     return true;
