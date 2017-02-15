@@ -1,0 +1,40 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<body>
+<div class="container" layout:fragment="content">
+    <div class="row">
+        <div class="col-mdoffset-2 col-md-8">
+            <form th:object="${user}" method="post">
+                <table class="table table-hover">
+                    <tr>
+                        <th>ID</th>
+                        <td><input type="text" th:field="*{id}" readonly="readonly" value="ID"/></td>
+                    </tr>
+                    <tr>
+                        <th>Username</th>
+                        <td><input type="text" th:field="*{username}" value="username"/></td>
+                    </tr>
+                    <tr>
+                        <th>Organization</th>
+                        <td><input type="text" th:field="*{org}" value="organization"/></td>
+                    </tr>
+                    <tr>
+                        <th>Password</th>
+                        <td><input type="password" th:field="*{password}" value="password"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input class="button" type="submit" value="Save"/></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
