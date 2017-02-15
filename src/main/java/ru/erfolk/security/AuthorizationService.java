@@ -40,11 +40,7 @@ public class AuthorizationService {
         for (Permission permission : role.getRights()) {
             if (request.getMethod().matches(permission.getMethod())
                     && request.getServletPath().matches(permission.getPath())) {
-                if (permission.getPermission() > 0) {
-                    return true;
-                } else if (permission.getPermission() < 0) {
-                    return false;
-                }
+                return true;
             }
         }
 

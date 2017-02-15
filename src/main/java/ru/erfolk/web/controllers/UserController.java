@@ -88,4 +88,11 @@ public class UserController {
 
         return "redirect:" + Endpoints.USER_LIST;
     }
+
+    @RequestMapping(value = "{id}/delete")
+    @Transactional
+    public String save(@PathVariable("id") @NonNull Integer id) {
+        userService.delete(id);
+        return "redirect:" + Endpoints.USER_LIST;
+    }
 }

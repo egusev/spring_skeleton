@@ -19,7 +19,6 @@
             <th class="col-md-offset-2 col-md-1">ID</th>
             <th class="col-md-3">Path</th>
             <th class="col-md-2">Method</th>
-            <th class="col-md-1">Permission</th>
             <th class="col-md-1"><!-- --></th>
         </tr>
 
@@ -28,7 +27,6 @@
                 <td th:text="${permission.id}">ID</td>
                 <td th:text="${permission.path}">Path</td>
                 <td th:text="${permission.method}">Method</td>
-                <td th:text="${permission.permission}">Permission</td>
                 <td><a href="/rights/1" th:href="@{'/rights/' + ${permission.id}}" class="btn btn-success btn-xs custom-width">edit</a></td>
             </tr>
         </th:block>

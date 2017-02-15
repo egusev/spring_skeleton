@@ -57,7 +57,6 @@ public class PermissionController {
         if (entity != null) {
             entity.setPath(permission.getPath());
             entity.setMethod(permission.getMethod());
-            entity.setPermission(permission.getPermission());
 
             if (entity.getId() == null) {
                 permissionService.create(entity);
@@ -66,6 +65,13 @@ public class PermissionController {
             }
         }
 
+        return "redirect:" + Endpoints.RIGHT_LIST;
+    }
+
+    @RequestMapping(value = "{id}/delete")
+    @Transactional
+    public String save(@PathVariable("id") @NonNull Integer id) {
+        permissionService.delete(id);
         return "redirect:" + Endpoints.RIGHT_LIST;
     }
 }

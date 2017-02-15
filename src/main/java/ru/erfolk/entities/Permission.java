@@ -26,7 +26,4 @@ public class Permission extends BaseEntity<Integer> {
     @NotNull
     @Column
     private String method;
-
-    @Column
-    private int permission;
 }

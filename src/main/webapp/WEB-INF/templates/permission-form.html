@@ -23,11 +23,10 @@
                         <td><input type="text" th:field="*{method}" value="method"/></td>
                     </tr>
                     <tr>
-                        <th>Permission</th>
-                        <td><input type="text" th:field="*{permission}" value="permission"/></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><input class="button" type="submit" value="Save"/></td>
+                        <td colspan="2">
+                            <input class="button" type="submit" value="Save"/>
+                            <a class="button" th:href="@{'/rights/' + ${permission.id}+ '/delete'}">Delete</a>
+                        </td>
                     </tr>
                 </table>
             </form>

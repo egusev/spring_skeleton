@@ -73,4 +73,11 @@ public class RoleController {
 
         return "redirect:" + Endpoints.ROLE_LIST;
     }
+
+    @RequestMapping(value = "{id}/delete")
+    @Transactional
+    public String save(@PathVariable("id") @NonNull Integer id) {
+        roleService.delete(id);
+        return "redirect:" + Endpoints.ROLE_LIST;
+    }
 }
