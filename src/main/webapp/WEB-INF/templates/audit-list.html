@@ -13,7 +13,7 @@
                 <th class="col-md-1">date</th>
                 <th class="col-md-1">user</th>
                 <th class="col-md-1">entity</th>
-                <th class="col-md-1">ID</th>
+                <th class="col-md-1">entity ID</th>
                 <th class="col-md-1">version</th>
                 <th class="col-md-3">old</th>
                 <th class="col-md-3">new</th>
@@ -24,11 +24,11 @@
                     <td class="col-md-1" th:text="${audit.id}">ID</td>
                     <td class="col-md-1" th:text="${audit.date}">Username</td>
                     <td class="col-md-1" th:text="${audit.user}">Organization</td>
-                    <td class="col-md-1" th:text="${audit.clazz}">Organization</td>
-                    <td class="col-md-1" th:text="${audit.entityId}">Organization</td>
-                    <td class="col-md-1" th:text="${audit.version}">Organization</td>
-                    <td class="col-md-3" th:text="${audit.oldValue}">Organization</td>
-                    <td class="col-md-3" th:text="${audit.newValue}">Organization</td>
+                    <td class="col-md-1" th:text="${audit.clazz}">Entity</td>
+                    <td class="col-md-1" th:text="${audit.entityId}">Entity ID</td>
+                    <td class="col-md-1" th:text="${audit.version}">Version of entity</td>
+                    <td class="col-md-3" th:text="${audit.oldValue}">Old value</td>
+                    <td class="col-md-3" th:text="${audit.newValue}">New value</td>
                 </tr>
             </th:block>
         </table>

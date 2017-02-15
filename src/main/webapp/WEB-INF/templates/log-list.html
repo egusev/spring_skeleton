@@ -1,0 +1,36 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<body>
+<div class="container-fluid" layout:fragment="content">
+    <div class="row">
+        <table class="table">
+            <tr>
+                <th class="col-md-offset-2 col-md-1">ID</th>
+                <th class="col-md-1">date</th>
+                <th class="col-md-1">user</th>
+                <th class="col-md-3">path</th>
+                <th class="col-md-1">last, ms</th>
+                <th class="col-md-1">result</th>
+            </tr>
+
+            <th:block th:each="log : ${list}">
+                <tr>
+                    <td class="col-md-1" th:text="${log.id}">ID</td>
+                    <td class="col-md-1" th:text="${log.date}">Date</td>
+                    <td class="col-md-1" th:text="${log.user}">User</td>
+                    <td class="col-md-1" th:text="${log.path}">Path</td>
+                    <td class="col-md-1" th:text="${log.last}">Lasts in ms</td>
+                    <td class="col-md-1" th:text="${log.responseCode}">Result (i.e. 200, 404 etc)</td>
+                </tr>
+            </th:block>
+        </table>
+    </div>
+</div>
+</body>
+</html>
+
+

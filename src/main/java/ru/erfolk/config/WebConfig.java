@@ -106,4 +106,25 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         configurer.enable();
     }
 
+/*
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LogHandlerInterceptorAdapter());
+    }
+
+    @Bean
+    public CommonsRequestLoggingFilter requestLoggingFilter() {
+        CommonsRequestLoggingFilter crlf = new CommonsRequestLoggingFilter();
+        crlf.setIncludeClientInfo(true);
+        crlf.setIncludeQueryString(true);
+        crlf.setIncludePayload(true);
+        return crlf;
+    }
+
+    @Bean
+    public CustomizableTraceInterceptor customizableTraceInterceptor() {
+        CustomizableTraceInterceptor cti = new CustomizableTraceInterceptor();
+        return cti;
+    }
+*/
 }

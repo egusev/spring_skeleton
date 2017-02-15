@@ -15,4 +15,6 @@ public interface Endpoints {
     String RIGHT_LIST       = "/rights";
 
     String AUDIT_LIST       = "/audit";
+
+    String LOGS_LIST        = "/logs";
 }

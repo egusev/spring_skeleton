@@ -67,6 +67,7 @@ public class WebApplicationInitializer extends AbstractAnnotationConfigDispatche
     @Override
     protected Filter[] getServletFilters() {
         return new Filter[]{
+//                new LoggingFilter(),
                 new OpenEntityManagerInViewFilter(),
                 new HiddenHttpMethodFilter()
         };
@@ -78,4 +79,5 @@ public class WebApplicationInitializer extends AbstractAnnotationConfigDispatche
         servlet.setThrowExceptionIfNoHandlerFound(true);
         return servlet;
     }
+    
 }

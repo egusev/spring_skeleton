@@ -20,6 +20,8 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationFa
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.security.web.context.SecurityContextPersistenceFilter;
+import ru.erfolk.audit.LoggingFilter;
 import ru.erfolk.security.UserOrgAuthenticationFilter;
 import ru.erfolk.services.UserService;
 import ru.erfolk.web.controllers.Endpoints;
@@ -34,9 +36,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableWebSecurity
 @Slf4j
-//@ImportResource("classpath:security-context.xml")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
     protected static final String USE_SECURITY = "spring-security.use";
 
     @Resource
@@ -47,6 +47,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private LoggingFilter loggingFilter;
 
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
@@ -85,18 +88,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .logoutSuccessUrl("/")
                     .and()
 
-//					.exceptionHandling().authenticationEntryPoint(new RESTAuthenticationEntryPoint()).and()
-
-                    // Configure the logout
-//					.logout().permitAll().logoutSuccessHandler(new RESTLogoutSuccessHandler()).and()
-
                     // Configures url based authorization
                     .authorizeRequests()
                     // Anyone can access to the home page
                     .antMatchers("/").permitAll()
                     .antMatchers("/logout").authenticated()
                     // Others page authorised by service
-                    .antMatchers("**").access("@authorizationService.check(authentication,request)");
+                    .antMatchers("**").access("@authorizationService.check(authentication,request)")
+                    .and()
+                    .addFilterAfter(loggingFilter, SecurityContextPersistenceFilter.class)
+            ;
         }
     }
 

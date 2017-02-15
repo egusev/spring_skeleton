@@ -3,14 +3,14 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head th:replace="${page}::head">
-    <link href="css/style.css" rel="stylesheet"/>
-    <link href="css/angular-bootstrap.css" rel="stylesheet"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <link th:href="@{/css/angular-bootstrap.css}" rel="stylesheet"/>
     <base href="/"/>
 </head>
 <body>
 <header th:include="menu::header">
 </header>
 <div th:include="${page}::content" class="container"></div>
-<script src="js/angular-bootstrap.js" type="text/javascript"></script>
+<script src="@{/js/angular-bootstrap.js}" type="text/javascript"></script>
 </body>
 </html>

@@ -3,8 +3,6 @@ package ru.erfolk.audit;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ru.erfolk.entities.BaseEntity;
 
@@ -19,7 +17,7 @@ public class AuditService {
     @Autowired
     private AuditRepository auditRepository;
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.READ_UNCOMMITTED)
+    @Transactional
     public void audit(BaseEntity entity, boolean created, boolean deleted) {
         try {
             Audit audit = new Audit(entity, deleted);
