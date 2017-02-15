@@ -10,5 +10,5 @@ import java.io.Serializable;
  */
 @Repository
 public interface AuditRepository extends JpaRepository<Audit, Long> {
-    Audit findByClazzAndEntityIdAndVersion(String clazz, Serializable id, long version);
+    Audit findFirstByClazzAndEntityIdAndVersion(String clazz, Serializable id, long version);
 }

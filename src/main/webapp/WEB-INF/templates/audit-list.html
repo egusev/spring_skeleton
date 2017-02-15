@@ -1,0 +1,40 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<body>
+<div class="container-fluid" layout:fragment="content">
+    <div class="row">
+        <table class="table">
+            <tr>
+                <th class="col-md-1">ID</th>
+                <th class="col-md-1">date</th>
+                <th class="col-md-1">user</th>
+                <th class="col-md-1">entity</th>
+                <th class="col-md-1">ID</th>
+                <th class="col-md-1">version</th>
+                <th class="col-md-3">old</th>
+                <th class="col-md-3">new</th>
+            </tr>
+
+            <th:block th:each="audit : ${list}">
+                <tr>
+                    <td class="col-md-1" th:text="${audit.id}">ID</td>
+                    <td class="col-md-1" th:text="${audit.date}">Username</td>
+                    <td class="col-md-1" th:text="${audit.user}">Organization</td>
+                    <td class="col-md-1" th:text="${audit.clazz}">Organization</td>
+                    <td class="col-md-1" th:text="${audit.entityId}">Organization</td>
+                    <td class="col-md-1" th:text="${audit.version}">Organization</td>
+                    <td class="col-md-3" th:text="${audit.oldValue}">Organization</td>
+                    <td class="col-md-3" th:text="${audit.newValue}">Organization</td>
+                </tr>
+            </th:block>
+        </table>
+    </div>
+</div>
+</body>
+</html>
+
+

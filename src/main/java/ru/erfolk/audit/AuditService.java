@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ru.erfolk.entities.BaseEntity;
 
+import java.util.List;
+
 /**
  * @author Eugene Gusev (egusev@gmail.com)
  */
@@ -23,7 +25,7 @@ public class AuditService {
             Audit audit = new Audit(entity, deleted);
 
             if (!created) {
-                Audit prev = auditRepository.findByClazzAndEntityIdAndVersion(entity.getClass().getSimpleName(), entity.getId(), entity.getVersion() - 1);
+                Audit prev = auditRepository.findFirstByClazzAndEntityIdAndVersion(entity.getClass().getSimpleName(), entity.getId(), entity.getVersion() - 1);
                 if (prev != null) {
                     audit.setOldValue(prev.getNewValue());
                 }
@@ -35,4 +37,7 @@ public class AuditService {
         }
     }
 
+    public List<Audit> findAll() {
+        return auditRepository.findAll();
+    }
 }
