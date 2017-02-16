@@ -47,6 +47,13 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.0.0</version>
+                <configuration>
+                      <webResources>
+                        <resource>
+                          <directory>${project.build.directory}/generated-resources/</directory>
+                        </resource>
+                      </webResources>
+                    </configuration>
             </plugin>
 
             <plugin>
@@ -82,8 +89,7 @@
                 <configuration>
                     <wroManagerFactory>ro.isdc.wro.maven.plugin.manager.factory.ConfigurableWroManagerFactory
                     </wroManagerFactory>
-                    <cssDestinationFolder>${project.build.directory}/generated-resources/css
-                    </cssDestinationFolder>
+                    <cssDestinationFolder>${project.build.directory}/generated-resources/css</cssDestinationFolder>
                     <jsDestinationFolder>${project.build.directory}/generated-resources/js</jsDestinationFolder>
                     <wroFile>${basedir}/src/main/wro/wro.xml</wroFile>
                     <extraConfigFile>${basedir}/src/main/wro/wro.properties</extraConfigFile>
