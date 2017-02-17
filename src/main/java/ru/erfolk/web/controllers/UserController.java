@@ -17,7 +17,6 @@ import ru.erfolk.services.RoleService;
 import ru.erfolk.services.UserService;
 
 import javax.validation.Valid;
-import java.util.Locale;
 
 /**
  * @author Eugene Gusev (egusev@gmail.com)
@@ -66,8 +65,6 @@ public class UserController {
             model.addAttribute("user", user);
             return "redirect:" + Endpoints.USER_LIST + "/" + id;
         }
-        log.warn("user {}", user);
-        log.warn("message {}", messageSource.getMessage("user.button", null, Locale.getDefault()));
 
         User entity = id > 0 ? userService.findById(id) : new User();
         if (entity != null) {
