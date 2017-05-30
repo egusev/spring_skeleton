@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import ru.erfolk.audit.CustomAuditListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,7 +18,6 @@ import static javax.persistence.FetchType.LAZY;
 @Getter
 @Setter
 @ToString(exclude = {"createdBy", "lastModifiedBy"})
-@EntityListeners({CustomAuditListener.class})
 public abstract class BaseEntity<K extends Serializable> {
 
     @Id

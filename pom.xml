@@ -154,6 +154,7 @@
         </dependency>
 
         <!-- spring security -->
+<!--
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
@@ -166,6 +167,7 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-aspects</artifactId>
         </dependency>
+-->
 
         <!-- validation -->
         <dependency>
@@ -182,10 +184,12 @@
             <groupId>org.thymeleaf</groupId>
             <artifactId>thymeleaf-spring4</artifactId>
         </dependency>
+<!--
         <dependency>
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity4</artifactId>
         </dependency>
+-->
         <dependency>
           <groupId>nz.net.ultraq.thymeleaf</groupId>
           <artifactId>thymeleaf-layout-dialect</artifactId>

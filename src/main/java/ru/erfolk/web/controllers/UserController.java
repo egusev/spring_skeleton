@@ -4,7 +4,6 @@ import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -31,9 +30,6 @@ public class UserController {
 
     @Autowired
     private RoleService roleService;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private MessageSource messageSource;
@@ -73,7 +69,7 @@ public class UserController {
             entity.setRole(user.getRole());
 
             if (user.getPassword() != null && !user.getPassword().trim().isEmpty()) {
-                entity.setPassword(passwordEncoder.encode(user.getPassword()));
+//                entity.setPassword(passwordEncoder.encode(user.getPassword()));
             }
 
             if (entity.getId() == null) {
