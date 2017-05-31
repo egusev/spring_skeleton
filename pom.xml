@@ -14,7 +14,6 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <wro4j.version>1.8.0</wro4j.version>
     </properties>
 
     <build>
@@ -72,46 +71,6 @@
                         </fileset>
                     </filesets>
                 </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>ro.isdc.wro4j</groupId>
-                <artifactId>wro4j-maven-plugin</artifactId>
-                <version>${wro4j.version}</version>
-                <executions>
-                    <execution>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <wroManagerFactory>ro.isdc.wro.maven.plugin.manager.factory.ConfigurableWroManagerFactory
-                    </wroManagerFactory>
-                    <cssDestinationFolder>${project.build.directory}/generated-resources/css</cssDestinationFolder>
-                    <jsDestinationFolder>${project.build.directory}/generated-resources/js</jsDestinationFolder>
-                    <wroFile>${basedir}/src/main/wro/wro.xml</wroFile>
-                    <extraConfigFile>${basedir}/src/main/wro/wro.properties</extraConfigFile>
-                    <contextFolder>${basedir}/src/main/wro</contextFolder>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.webjars</groupId>
-                        <artifactId>jquery</artifactId>
-                        <version>2.2.4</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.webjars</groupId>
-                        <artifactId>angularjs</artifactId>
-                        <version>1.5.9</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.webjars</groupId>
-                        <artifactId>bootstrap</artifactId>
-                        <version>3.3.7-1</version>
-                    </dependency>
-                </dependencies>
             </plugin>
 
         </plugins>
@@ -289,7 +248,7 @@
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
             <version>2.3.4</version>
-            <scope>test</scope>
+<!--            <scope>test</scope> -->
         </dependency>
 
         <!-- lombok -->

@@ -70,6 +70,7 @@ public class UserController {
 
             if (user.getPassword() != null && !user.getPassword().trim().isEmpty()) {
 //                entity.setPassword(passwordEncoder.encode(user.getPassword()));
+                entity.setPassword(user.getPassword());
             }
 
             if (entity.getId() == null) {

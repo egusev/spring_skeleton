@@ -1,15 +1,13 @@
 package ru.erfolk.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
-import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
-import java.util.Date;
-
-import static javax.persistence.FetchType.LAZY;
 
 /**
  * @author Eugene Gusev (egusev@gmail.com)
@@ -17,33 +15,11 @@ import static javax.persistence.FetchType.LAZY;
 @MappedSuperclass
 @Getter
 @Setter
-@ToString(exclude = {"createdBy", "lastModifiedBy"})
 public abstract class BaseEntity<K extends Serializable> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected K id;
-
-    @Version
-    private long version;
-
-    @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "created_by")
-    @JsonIgnore
-    private User createdBy;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "creation_time", nullable = false)
-    private Date creationTime;
-
-    @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "last_modified_by")
-    @JsonIgnore
-    private User lastModifiedBy;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "last_modification_time", nullable = false)
-    private Date lastModificationTime;
 
     public K getId() {
         return id;
